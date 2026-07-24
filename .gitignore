@@ -1,31 +1,54 @@
+# ==========================
 # Dependências
+# ==========================
 node_modules/
 
+# ==========================
 # Variáveis de ambiente
+# ==========================
 .env
 
+# ==========================
 # Logs
+# ==========================
 logs/*
 !logs/.gitkeep
 
+# ==========================
 # Screenshots
+# ==========================
 screenshots/*
 !screenshots/.gitkeep
 
-# Dados
-data/*
-!data/.gitkeep
-
-# Playwright
+# ==========================
+# Relatórios do Playwright
+# ==========================
 playwright-report/
 test-results/
 
-# macOS
-.DS_Store
-
-# VS Code
-.vscode/
-
+# ==========================
+# Arquivos temporários
+# ==========================
 *.log
 *.tmp
 *.bak
+
+# ==========================
+# macOS
+# ==========================
+.DS_Store
+
+# ==========================
+# VS Code
+# ==========================
+.vscode/
+
+# ==========================
+# JetBrains (IntelliJ, WebStorm, etc.)
+# ==========================
+.idea/
+
+# ==========================
+# Arquivos de sistema
+# ==========================
+Thumbs.db
