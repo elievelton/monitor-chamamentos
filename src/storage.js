@@ -1,47 +1,46 @@
 const fs = require("fs");
 const path = require("path");
 
-const arquivo = path.join(__dirname, "..", "data", "ultimo_numero.json");
+const caminhoArquivo = path.join(__dirname, "..", "data", "ultimo_numero.json");
 
 function obterDados() {
-
-    if (!fs.existsSync(arquivo)) {
+    if (!fs.existsSync(caminhoArquivo)) {
         return null;
     }
 
-    return JSON.parse(
-        fs.readFileSync(arquivo, "utf8")
-    );
-
+    try {
+        const conteudo = fs.readFileSync(caminhoArquivo, "utf8");
+        return JSON.parse(conteudo);
+    } catch {
+        return null;
+    }
 }
 
 function obterUltimoNumero() {
-
     const dados = obterDados();
 
-    return dados ? dados.total : null;
+    if (!dados) {
+        return null;
+    }
 
+    return dados.total;
 }
 
 function salvarNumero(total) {
-
-    const agora = new Date().toISOString();
-
     const dados = {
         total,
-        ultimaVerificacao: agora,
-        ultimaNotificacao: agora
+        atualizadoEm: new Date().toISOString()
     };
 
     fs.writeFileSync(
-        arquivo,
-        JSON.stringify(dados, null, 2)
+        caminhoArquivo,
+        JSON.stringify(dados, null, 2),
+        "utf8"
     );
-
 }
 
 module.exports = {
+    obterDados,
     obterUltimoNumero,
-    salvarNumero,
-    obterDados
+    salvarNumero
 };
